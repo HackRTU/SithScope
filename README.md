@@ -22,8 +22,7 @@ Below is a detailed explanation of the attack process.
 The objective of the attack is to exfiltrate information using industrial protocols.  
 To provide initial visual context, the original material included an image showing the assets involved and the types of protocols used between them.
 
-<img width="894" height="550" alt="Devices with implications during the initial attack" src="https://github.com/user-attachments/assets/7a7e5644-3616-437b-9794-4b51b869d0bf" />
-
+<img width="894" height="582" alt="image" src="https://github.com/user-attachments/assets/a51bbbc7-bb2e-42f0-aa80-da9495998e3b" />
 
 It is important to note that the environment in the original assessment was a production environment (motors were running, and any impact to devices could cause process stoppage).  
 The stated primary objective was to exfiltrate information from the network. Subgoals described in the original document contained operational vectors and destinations; those specifics have been replaced with redactions in this public version:
