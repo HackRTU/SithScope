@@ -122,3 +122,7 @@ Different conclusion can be taken:
 This content is intended for documentation and (if applicable) for defensive research in controlled, authorised laboratory environments only. Reproduction of operational techniques, vectors, or detailed attack procedures in public repositories is dangerous and irresponsible.
 
 ---
+
+---
+
+> © 2025 HackRTU
