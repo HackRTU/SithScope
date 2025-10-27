@@ -22,7 +22,7 @@ Below is a detailed explanation of the attack process.
 The objective of the attack is to exfiltrate information using industrial protocols.  
 To provide initial visual context, the original material included an image showing the assets involved and the types of protocols used between them.
 
-<img width="571" height="371" alt="Devices with implications during the initial attack" src="https://github.com/user-attachments/assets/7a7e5644-3616-437b-9794-4b51b869d0bf" />
+<img width="894" height="371" alt="Devices with implications during the initial attack" src="https://github.com/user-attachments/assets/7a7e5644-3616-437b-9794-4b51b869d0bf" />
 
 
 It is important to note that the environment in the original assessment was a production environment (motors were running, and any impact to devices could cause process stoppage).  
@@ -94,7 +94,7 @@ In this phase, the files or information that want to be exfiltrated must be proc
 
 For this research, a specific file has been created (but any of the files or any information that is in the EWS 1 could be exfiltrated). 
 
-1. The use of the functionality number 4 in the SithScope will prepare the text “CCICon2025HackRTU!” to be written in the registers by order. Also, this functionality will encode/sanitize the data, that will be exfiltrated, to be read correctly in the SCADA and at the HMI. With this, the exfiltration can be done using a Modbus TCP native request using the legitimate PLC device and from the EWS 1. This request will be really hard to be detected, as the information will appear in the registry of Modbus which is also being used in the HMI visualization so anyone can see that critical data of the EWS 1 and also in other network, the supervision network, in which the SCADA (with public access on Internet) is configured.
+1. The use of the functionality number 4 in the SithScope will prepare the text “EXFILTRATED INFO!” to be written in the registers by order. Also, this functionality will encode/sanitize the data, that will be exfiltrated, to be read correctly in the SCADA and at the HMI. With this, the exfiltration can be done using a Modbus TCP native request using the legitimate PLC device and from the EWS 1. This request will be really hard to be detected, as the information will appear in the registry of Modbus which is also being used in the HMI visualization so anyone can see that critical data of the EWS 1 and also in other network, the supervision network, in which the SCADA (with public access on Internet) is configured.
 
 ### 4. PHASE 4
 
