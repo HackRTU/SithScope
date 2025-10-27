@@ -1,6 +1,6 @@
 # SithScope
 
-**Tool for exfiltrating information through industrial protocols in Operation Technologies environments**
+**Tool for exfiltrating information through industrial protocols in Operation Technologies environments.**
 
 > **Note:** Sensitive operational details have been redacted from this public document. This repository is for documentation purposes only. Do **not** use it for unauthorized activities.
 
@@ -9,17 +9,17 @@
 ## Overview
 
 This tool (initial phase) is designed to perform information exfiltration in industrial environments through industrial protocols that allow such communication.  
-**Version:** v0.3 — **27/10/2025**
+**Version:** v0.3 — **27/10/2025** In this version all the capabilities of the tool are focused on the industrial protocol Modbus. In a future version the tool will have the capabilities to use other industrial protocols with functions to allow the exfiltration.
 
 This release provides the capability to exfiltrate data from a file on an engineering workstation (EWS) in a modular, non-automated fashion.
 
-Below is a detailed explanation of the attack process.
+Below is a detailed explanation of the tool processes and phases.
 
 ---
 
 ## OBJECTIVES AND SCOPE
 
-The objective of the attack is to exfiltrate information using industrial protocols.  
+The objective of the tool is to exfiltrate information using industrial protocols without being detected.  
 To provide initial visual context, the original material included an image showing the assets involved and the types of protocols used between them.
 
 <img width="894" height="582" alt="image" src="https://github.com/user-attachments/assets/a51bbbc7-bb2e-42f0-aa80-da9495998e3b" />
@@ -31,7 +31,7 @@ The stated primary objective was to exfiltrate information from the network. Sub
 
 ## REFERENCE ARCHITECTURE
 
-The next architecture represents a typical reference architecture in a real industrial environment. This architecture shown below must be taken as an example but also as the real environment where the tests **[REDACTED — sensitive detail removed]**.
+The next architecture represents a typical reference architecture in a real industrial environment. This architecture shown below must be taken as an example but also as the real environment where the tests.
 
 <img width="893" height="502" alt="image" src="https://github.com/user-attachments/assets/40b68a20-daf8-4d7d-a150-6a40e8efb6c0" />
 
@@ -45,11 +45,11 @@ Different networks can be seen including the **IT network**, the **DMZ IT/OT**, 
 
 ------
 
-## ATTACK PHASES
+## TOOL PHASES
 
-This section originally enumerated the different phases of the attack to demonstrate how exfiltration via an industrial protocol could be performed.
+This section originally enumerated the different phases of the "attack" using the tool to demonstrate how exfiltration via an industrial protocol could be performed.
 
-**SithScope phases**
+**SithScope tool phases**
 
 1. **PHASE 1: Infection of the engineering workstation** 
 2. **PHASE 2: Analysis of the industrial device using Modbus TCP** 
@@ -81,13 +81,13 @@ In the next figure, it is possible to see the second phase of the attack to illu
  
 <img width="894" height="616" alt="image" src="https://github.com/user-attachments/assets/1e59c13a-d310-425c-aae7-eafd389595e9" />
 
-Now the next functionalities of the SithScope tool will be shown:
+Now the next functionalities of the SithScope tool will be described:
 1. Detection of the Modbus ID: As it has been possible to detect that the device is using the TCP 502 port related with Modbus TCP, the first thing to interact with the device is to detect the Modbus ID which can be done using a Modbus TCP request (native request) which will not be detected by any security implementation. With the Modbus slave ID detected, different Modbus native request now can be done.
 2. The next functionality will analyse the different Modbus registers that the PLC has to know which are static and which are dynamic. This must be remarked due to it is important to exfiltrate information through different Modbus registers that don’t affect the production environment. So, if we write over a dynamic register, the PLC will overwrite our information so we couldn’t exfiltrate it and maybe we are affecting a production variable.
 
 ### 3. PHASE 3
 
-In this phase, the files or information that want to be exfiltrated must be processed and prepared in the SithScope tool. 
+In this phase, the files or information that want to be exfiltrated must be processed and prepared with in the SithScope tool. 
  
 <img width="894" height="621" alt="image" src="https://github.com/user-attachments/assets/961808bb-6d5e-4905-bc5e-523e44432c02" />
 
@@ -101,28 +101,24 @@ As have been said, the industrial protocol Modbus TCP has been used to exfiltrat
 
 <img width="894" height="618" alt="image" src="https://github.com/user-attachments/assets/8c1c13c8-2aee-4ad2-9e1f-e814fc900544" />
 
-The last functionality of the SithScope tool is prepared to send the data using the protocol Modbus TCP over the network to the registries of the PLC that have been detected as modifiable. The next picture shown how the data have been sent in the left side (using SithScope) and how the IP 10.1.0.130 (the PLC) has interpreted the data and modified it in his registries due to the Nº 1063 query of Wireshark let us see the reading of those registries a few milliseconds later that the request 1041 which sent the exfiltrated data.
-Then these registries are used in the SCADA of the Workstation 2 in the Supervision Network and also by the HMI Magelis in the Control Network. These two data modifications have allowed an attacker to see the data in the HMI Magelis (Which also could be at Internet or that someone without permissions could read it.
+The last functionality of the SithScope tool is prepared to send the data using the protocol Modbus TCP over the network to the registries of the PLC that have been detected as modifiable. 
+The registries detected and used, are being implemented in the SCADA of the Workstation 2 in the Supervision Network and also by the HMI Magelis in the Control Network. These two data modifications have allowed an attacker to see the data in the HMI Magelis (Which also could be at Internet or that someone without permissions could read it.
 
 ---
 
 ## CONCLUSIONS
 
 Different conclusion can be taken:
-1. All the attack (in this, and possibly in many architectures) will be undetectable through the network because all the elements involved in the attack are using native requests of the protocol Modbus TCP with legitimate devices.
+1. All the tool process use (in this, and possibly in many architectures) will be undetectable through the network because all the elements involved in the attack are using native requests of the protocol Modbus TCP with legitimate devices.
 2. The firewall couldn’t detect the change in variables due to STRING variables were used, so for it, was a normal traffic sent by the EWS 1.
-3. There are many attacks documented of exfiltration at industrial environments but there is not a technique or a tactic in the ICS Matrix of MITRE ATT&CK considering it. But what it is important, is that there are no techniques in the ICS Matrix of exfiltration using industrial protocols.
-The Modbus TCP protocols allow sending legitimate packages with STRING, WORD, DWORD data, etc. but also, other protocols like Bacnet, EthernetIP or OPC could be used to exfiltrate data through them.
+3. There are many attacks documented of exfiltration at industrial environments. 
+4. The Modbus TCP protocol allow sending legitimate packages with STRING, WORD, DWORD data, etc. but also, other protocols like Bacnet, EthernetIP or OPC could be used to exfiltrate data through them.
+
+---
 
 
 ## SAFETY & ETHICS
 
 This content is intended for documentation and (if applicable) for defensive research in controlled, authorised laboratory environments only. Reproduction of operational techniques, vectors, or detailed attack procedures in public repositories is dangerous and irresponsible.
-
-If you are conducting security research:
-
-- Always obtain explicit written authorization from asset owners before testing.  
-- Prefer isolated lab setups and simulated devices, not production equipment.  
-- Focus on detection, mitigation, and disclosure processes rather than adversary tradecraft in public artifacts.
 
 ---
