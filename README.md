@@ -2,13 +2,13 @@
 
 **Tool for exfiltrating information through industrial protocols in Operation Technologies environments.**
 
-> **Note:** Sensitive operational details have been redacted from this public document. This repository is for documentation purposes only. Do **not** use it for unauthorized activities.
+> **Note:** Confidential operational details have been removed from this public document. This repository is for documentary purposes only. Its use for unauthorised activities is **not** permitted.
 
 ---
 
 ## Overview
 
-This tool (initial phase) is designed to perform information exfiltration in industrial environments through industrial protocols that allow such communication.  
+This tool (in an early stage of development) is designed to exfiltrate information through industrial communication protocols present within the target architecture.  
 **Version:** v0.3 — **27/10/2025** In this version all the capabilities of the tool are focused on the industrial protocol Modbus. In a future version the tool will have the capabilities to use other industrial protocols with functions to allow the exfiltration.
 
 This release provides the capability to exfiltrate data from a file on an engineering workstation (EWS) in a modular, non-automated fashion.
@@ -19,27 +19,27 @@ Below is a detailed explanation of the tool processes and phases.
 
 ## OBJECTIVES AND SCOPE
 
-The objective of the tool is to exfiltrate information using industrial protocols without being detected.  
-To provide initial visual context, the original material included an image showing the assets involved and the types of protocols used between them.
+The objective of the tool is to exfiltrate information using industrial protocols without being detected or with minimal changes to the security tool notifications. 
+To provide initial visual context, the material included an image showing the assets involved and the types of protocols used between them.
 
 <img width="894" height="582" alt="image" src="https://github.com/user-attachments/assets/a51bbbc7-bb2e-42f0-aa80-da9495998e3b" />
 
 It is important to note that the environment in the original assessment was a production environment (motors were running, and any impact to devices could cause process stoppage).  
-The stated primary objective was to exfiltrate information from the network. Subgoals described in the original document contained operational vectors and destinations; those specifics have been replaced with redactions in this public version:
+The stated primary objective was to exfiltrate information from the network, specifically from the engineering station. Other sub-objectives included asset detection, services dedicated to industrial environments, open ports, protocols used, etc.
 
 ------
 
 ## REFERENCE ARCHITECTURE
 
-The next architecture represents a typical reference architecture in a real industrial environment. This architecture shown below must be taken as an example but also as the real environment where the tests.
+The following architecture represents a typical reference architecture in a real industrial environment. The architecture shown below should be taken as an example, but also as the actual environment in which the technical exfiltration tests were performed.
 
 <img width="893" height="502" alt="image" src="https://github.com/user-attachments/assets/40b68a20-daf8-4d7d-a150-6a40e8efb6c0" />
 
-Different networks can be seen including the **IT network**, the **DMZ IT/OT**, the **monitoring network**, the **control network** and finally the **field network**.
+Different networks can be seen including the **IT Network**, the **DMZ IT/OT**, the **Monitoring Network**, the **Control Network** and finally the **Field Network**.
 
 - **The IT Network:** In this example the network was created, and different devices were connected but they are **not relevant** for the purpose of this test.
 - **The DMZ IT/OT:** This network has a **Jump Host** for different providers' connections to the industrial networks.
-- **The Monitoring Network:** This network represents a virtual **SCADA** configured in **Workstation 2**. As will be seen later, the SCADA was published on Internet and also many people of the organization had access to it.
+- **The Monitoring Network:** This network represents a virtual **SCADA** configured in **Workstation 2**. As will be seen later, the SCADA was published on Internet what could allow the access to everyone.
 - **The Control Network:** One **PLC** with an **HMI** in the laboratory were included. Also, **Workstation 1** was in this network having the software to configure the HMI and the PLC, representing an **Engineering Workstation**.
 - **The Field Network:** This network includes two **frequency shifters** and two **motors** controlled by the shifters.
 
@@ -55,8 +55,6 @@ This section originally enumerated the different phases of the "attack" using th
 2. **PHASE 2: Analysis of the industrial device using Modbus TCP** 
 3. **PHASE 3: Prepare the file and information that will be exfiltrated** 
 4. **PHASE 4: Exfiltration of information using industrial protocols**
-
-> **Security note:** The original text emphasised avoiding detection and leveraging industrial protocol traffic to blend with normal operations. Discussion of evasion techniques and step-by-step instructions has been intentionally omitted from this public document.
 
 ### 1. PHASE 1
 
